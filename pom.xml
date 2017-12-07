@@ -5,7 +5,7 @@
 
   <groupId>me.javaroad</groupId>
   <artifactId>mcloud-parent</artifactId>
-  <version>1.0.3.SNAPSHOT</version>
+  <version>1.0.3.RELEASE</version>
   <packaging>pom</packaging>
 
   <name>mcloud-parent</name>
