@@ -3,36 +3,19 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>me.javaroad</groupId>
+  <groupId>me.javaroad.mcloud</groupId>
   <artifactId>mcloud-parent</artifactId>
-  <version>1.0.4.RELEASE</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>mcloud-parent</name>
   <url>http://maven.apache.org</url>
 
   <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.5.6.RELEASE</version>
+    <groupId>me.javaroad</groupId>
+    <artifactId>javaroad-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
   </parent>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>1.8</java.version>
-    <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
-    <apt-maven-plugin.version>1.1.3</apt-maven-plugin.version>
-
-    <lombok.version>1.16.16</lombok.version>
-    <guava.version>22.0</guava.version>
-    <commons-lang3.version>3.5</commons-lang3.version>
-    <org.mapstruct.version>1.1.0.Final</org.mapstruct.version>
-
-    <hibernate.version>5.2.10.Final</hibernate.version>
-    <flyway-maven-plugin.version>4.2.0</flyway-maven-plugin.version>
-
-    <mockito.version>2.8.9</mockito.version>
-  </properties>
 
   <dependencyManagement>
     <dependencies>
@@ -46,167 +29,10 @@
     </dependencies>
   </dependencyManagement>
 
-  <dependencies>
-
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-logging</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <!--logger-->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-log4j2</artifactId>
-    </dependency>
-
-    <!-- devtools -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-      <optional>true</optional>
-    </dependency>
-
-    <!-- Test -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <version>${mockito.version}</version>
-    </dependency>
-
-  </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>${maven-compiler-plugin.version}</version>
-      </plugin>
-
-      <plugin>
-        <groupId>org.eluder.coveralls</groupId>
-        <artifactId>coveralls-maven-plugin</artifactId>
-        <version>4.3.0</version>
-      </plugin>
-
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.7.6.201602180812</version>
-        <executions>
-          <execution>
-            <id>prepare-agent</id>
-            <goals>
-              <goal>prepare-agent</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-
-  <repositories>
-    <repository>
-      <id>oss-snapshots</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-
-  <licenses>
-    <license>
-      <name>The Apache Software License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-    </license>
-  </licenses>
-
-  <developers>
-    <developer>
-      <name>heyuxian</name>
-      <email>heyuxian.me@gmail.com</email>
-    </developer>
-  </developers>
-
   <scm>
     <connection>scm:git:git@github.com:heyuxian/mcloud-parent.git</connection>
     <developerConnection>scm:git:git@github.com:heyuxian/mcloud-parent.git</developerConnection>
     <url>git@github.com:heyuxian/mcloud-parent.git</url>
   </scm>
-
-  <profiles>
-    <profile>
-      <id>release</id>
-      <build>
-          <plugins>
-            <!-- Source -->
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-source-plugin</artifactId>
-              <version>2.2.1</version>
-              <executions>
-                <execution>
-                  <phase>package</phase>
-                  <goals>
-                    <goal>jar-no-fork</goal>
-                  </goals>
-                </execution>
-              </executions>
-            </plugin>
-            <!-- Javadoc -->
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-javadoc-plugin</artifactId>
-              <version>2.9.1</version>
-              <executions>
-                <execution>
-                  <phase>package</phase>
-                  <goals>
-                    <goal>jar</goal>
-                  </goals>
-                </execution>
-              </executions>
-            </plugin>
-            <!-- GPG -->
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-gpg-plugin</artifactId>
-              <version>1.5</version>
-              <executions>
-                <execution>
-                  <phase>verify</phase>
-                  <goals>
-                    <goal>sign</goal>
-                  </goals>
-                </execution>
-              </executions>
-            </plugin>
-          </plugins>
-      </build>
-      <distributionManagement>
-        <snapshotRepository>
-          <id>oss</id>
-          <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
-        <repository>
-          <id>oss</id>
-          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-      </distributionManagement>
-    </profile>
-  </profiles>
 
 </project>
